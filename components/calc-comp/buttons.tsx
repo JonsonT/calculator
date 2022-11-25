@@ -16,8 +16,8 @@ import {
   TbNumber1,
   TbDivide,
   TbLetterC,
-} from "react-icons/Tb";
-import { AiOutlineCloudSync } from "react-icons/Ai";
+} from "react-icons/tb";
+import { AiOutlineCloudSync } from "react-icons/ai";
 import {
   BsLightbulb,
   BsInfoCircle,
@@ -25,7 +25,7 @@ import {
   BsClockHistory,
   BsGear,
   BsDot,
-} from "react-icons/Bs";
+} from "react-icons/bs";
 
 export const DisNum_Oper = (
   key: number,

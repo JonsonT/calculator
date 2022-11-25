@@ -1,13 +1,13 @@
-import { TbMath, TbLetterC } from "react-icons/Tb";
-import { AiOutlineCloudSync } from "react-icons/Ai";
+import { TbMath, TbLetterC } from "react-icons/tb";
+import { AiOutlineCloudSync } from "react-icons/ai";
 import {
   BsLightbulb,
   BsInfoCircle,
   BsBackspace,
   BsClockHistory,
   BsGear,
-} from "react-icons/Bs";
-import { FiXSquare } from "react-icons/Fi";
+} from "react-icons/bs";
+import { FiXSquare } from "react-icons/fi";
 import Styles from "../styles/sass/info.module.scss";
 const Info = (setInfo: any, updateInfo: any): JSX.Element => {
   return (

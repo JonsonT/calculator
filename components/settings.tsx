@@ -1,6 +1,6 @@
 import Styles from "../styles/sass/settings.module.scss";
-import { FiXSquare } from "react-icons/Fi";
-import { BsFillSunFill, BsFillMoonFill } from "react-icons/Bs";
+import { FiXSquare } from "react-icons/fi";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import React, { useState } from "react";
 const Settings = (setSettings: any, upDateSettings: any): JSX.Element => {
   const [bg, setBg] = useState<string>("spaciel");

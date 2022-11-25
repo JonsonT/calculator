@@ -1,5 +1,5 @@
 import React from "react";
-import { BsClockHistory } from "react-icons/Bs";
+import { BsClockHistory } from "react-icons/bs";
 const History = (history: boolean, h_Log: any, Styles: any) => {
   return history ? (
     <div className={Styles.main_left}>

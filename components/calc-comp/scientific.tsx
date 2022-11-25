@@ -1,5 +1,5 @@
 import Styles from "../../styles/sass/scientific.module.scss";
-import { TbMath } from "react-icons/Tb";
+import { TbMath } from "react-icons/tb";
 const Scientific = (updateCalc: any): JSX.Element => {
   return (
     <div className={Styles.main_right}>
