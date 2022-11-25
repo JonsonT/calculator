@@ -164,14 +164,7 @@ l-45 -24 -24 22 c-31 29 -44 28 -60 -5 -24 -47 -30 -85 -15 -94 29 -19 103 -9
           mod
         </button>
         <button className={Styles.pi} onClick={() => {}}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            stroke-width="1.5px"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M7 20v-16"></path>
             <path d="M17 4v16"></path>
