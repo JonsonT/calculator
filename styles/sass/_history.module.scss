@@ -1,0 +1,48 @@
+@use "./funcs.module.scss" as *;
+@mixin history {
+  .main_left {
+    border-top: $prime_border;
+    @include border_radios(bottom, left, 10px);
+    @include border_radios(top, left, 10px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .history_display {
+    overflow-y: auto;
+  }
+
+  .history_log {
+    padding-left: 10px;
+    height: auto;
+    border-bottom: $prime_border;
+  }
+
+  .header {
+    @include flex_center(column);
+    font-size: map-get($map: $font_size, $key: "small");
+    border-bottom: 2px solid rgba(0, 0, 0, 0.466);
+    font-weight: map-get($map: $font_weight, $key: "medium");
+  }
+
+  @media only screen and (max-width: 700px) {
+    .header {
+      flex-direction: row;
+      gap: 20px;
+    }
+    .main_left {
+      border-top: none;
+      border-right: $prime_border;
+      border-left: $prime_border;
+      @include border_radios(top, left, 0);
+      @include border_radios(bottom, right, 10px);
+      @include border_radios(bottom, left, 10px);
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .header {
+      flex-direction: row;
+      border-top: $prime_border;
+    }
+  }
+}

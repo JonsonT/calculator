@@ -1,0 +1,70 @@
+@mixin flex_center($direction: column, $justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+@mixin border_radios($up_down, $left_right, $radius: 0) {
+  @if ($up_down == top) {
+    @if ($left_right == left) {
+      border-top-left-radius: $radius;
+    } @else {
+      border-top-right-radius: $radius;
+    }
+  } @else {
+    @if ($left_right == left) {
+      border-bottom-left-radius: $radius;
+    } @else {
+      border-bottom-right-radius: $radius;
+    }
+  }
+}
+@mixin btn($background, $cursor, $size, $border, $opacity: 1) {
+  background: $background;
+  cursor: $cursor;
+  font-size: $size;
+  border: $border;
+  opacity: $opacity;
+}
+@mixin btn_hover($background, $color) {
+  &:hover {
+    background: $background;
+    color: $color;
+  }
+}
+@mixin grid($row, $torow: $row + 1, $column, $tocolum: $column + 1) {
+  grid-row-start: $row;
+  grid-row-end: $torow;
+  grid-column-start: $column;
+  grid-column-end: $tocolum;
+}
+@mixin grid_template($rows, $columns) {
+  display: grid;
+  grid-template-rows: $rows;
+  grid-template-columns: $columns;
+}
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+$screen_resultSize: 14px;
+$prime_border: 1px solid rgba(0, 0, 0, 0.466);
+$screen_border: 2px solid rgba(8, 6, 6, 0.637);
+$screen_background2: rgba(130, 128, 107, 0.503);
+$screen_background: rgba(0, 0, 0, 0.503);
+$screen_color: rgba(255, 255, 255, 0.785);
+$font_size: (
+  "xxsmall": 16px,
+  "xsmall": 18px,
+  "small": 20px,
+  "medium": 22px,
+  "large": 24px,
+  "xlarge": 26px,
+);
+$font_weight: (
+  "xsmall": 400,
+  "small": 500,
+  "medium": 600,
+  "large": 800,
+  "xlarge": 1000,
+);
