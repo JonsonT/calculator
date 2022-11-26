@@ -12,8 +12,8 @@ import Styles from "../styles/sass/info.module.scss";
 const Info = (setInfo: any, info: string): JSX.Element => {
   return (
     <>
-      <div className={Styles.info_block} style={{ display: info }}>
-        <div className={Styles.about_block}>
+      <div className={Styles.info_wrapper} style={{ display: info }}>
+        <div className={Styles.info_block}>
           <button
             className={Styles.about_exit_btn}
             onClick={() => {
