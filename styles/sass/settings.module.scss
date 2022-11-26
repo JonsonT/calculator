@@ -10,7 +10,8 @@
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
 
   main {
-    @include flex_center(column, center, center);
+    @include flex_center(column, space-around, center);
+    gap: 5px;
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -31,66 +32,68 @@
       }
     }
     div {
+      width: 100%;
+      border-radius: 20px;
       display: flex;
-      > div {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 10px 5px;
-        max-height: 170px;
-
-        input {
-          height: 15px;
-          padding: 5px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px 5px;
+      max-height: 170px;
+      gap: 10px;
+      button {
+        cursor: pointer;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        transition: all 1s ease;
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
         }
       }
+    }
+    p {
+      height: 20px;
+      size-adjust: 32px;
+      text-align: center;
     }
   }
 }
 
 .background_choose_block {
+  flex-direction: row !important;
   background-color: transparent;
   width: 100%;
-  flex-grow: 1;
   justify-content: space-around;
+  align-items: center;
 }
 .dark_light_mode {
+  flex-direction: row !important;
+  box-shadow: none !important;
   height: 70px;
   align-items: center;
   justify-content: center !important;
-  gap: 80px;
+  gap: 80px !important;
   svg {
     font-size: 25px;
   }
+  button {
+    width: 65px !important;
+    height: 65px !important;
+  }
+
   .d_l_mode {
     padding-top: 0;
     gap: 25px;
   }
 }
 .font_choose_wrapper {
+  flex-direction: row !important;
   width: 100%;
-  flex-grow: 1;
   justify-content: space-around;
+  align-items: center;
 }
-.bg1,
-.bg2,
-.bg3,
-.bg4,
-.bg5,
-.ft1,
-.ft2,
-.ft3,
-.ft4,
-.ft5 {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.333);
-  transition: all 1s ease;
-  &:hover {
-    transform: scale(1.1);
-  }
-}
+
 .bg1 {
   background: rgba(101, 0, 94, 0.799);
   background: #65005ecc;
@@ -153,8 +156,7 @@
   font-family: cursive;
 }
 .ft5 {
-  font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Geneva,
-    Verdana, sans-serif;
+  font-family: "Verdana";
 }
 .save {
   border-radius: 20px;
@@ -169,4 +171,21 @@
     cursor: pointer;
     transform: scale(1.1);
   }
+}
+@media only screen and (max-width: 350px) {
+  .about_wrapper {
+    @include flex_center(column, center, center);
+    min-width: 250px;
+    overflow-x: scroll;
+  }
+}
+
+.settings_wrapper {
+  @include flex_center(row, center, center);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.399);
 }

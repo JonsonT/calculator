@@ -1,7 +1,7 @@
-import Styles from "../../styles/sass/scientific.module.scss";
+import Styles from "../styles/sass/scientific.module.scss";
 import { TbMath } from "react-icons/tb";
-const Scientific = (updateCalc: any): JSX.Element => {
-  return (
+const Scientific = (updateCalc: any, scientific: boolean): JSX.Element => {
+  return scientific ? (
     <div className={Styles.main_right}>
       <div className={Styles.header}>
         <TbMath />
@@ -176,6 +176,11 @@ l-45 -24 -24 22 c-31 29 -44 28 -60 -5 -24 -47 -30 -85 -15 -94 29 -19 103 -9
         </button>
       </div>
     </div>
+  ) : (
+    <div
+      className={Styles.none1}
+      style={{ width: "100%", height: "100%" }}
+    ></div>
   );
 };
 

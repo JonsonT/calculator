@@ -26,7 +26,8 @@ import {
   BsGear,
   BsDot,
 } from "react-icons/bs";
-
+import { useState } from "react";
+import Scientific from "./scientific";
 export const DisNum_Oper = (
   key: number,
   updateCalc: any,
@@ -190,13 +191,51 @@ export const DisNum_Oper = (
   ];
   return numbers[key];
 };
-export const Equal = (Styles: any, equal: any): JSX.Element => {
+export const Equal = (
+  Styles: any,
+  eqtrack: any,
+  setEqtrack: any,
+  setResult: any,
+  result: string,
+  cur: string,
+  setCur: any,
+  scientific: any,
+  setHlog: any,
+  h_Log: any,
+  createHistoryLog: any
+): JSX.Element => {
+  const equal = (): void => {
+    if (eqtrack) {
+      return;
+    }
+    setEqtrack(true);
+
+    if (scientific) {
+      setResult(result + " " + cur);
+
+      if (result !== "") {
+        setCur(eval(result + " " + cur));
+      } else {
+        return;
+      }
+    } else {
+      if (result !== "") {
+        setCur("0");
+        setResult("");
+      } else {
+        return;
+      }
+    }
+    setHlog([...h_Log, createHistoryLog()]);
+  };
   return (
     <button
       key={"equal"}
       className={Styles.equal}
       onClick={() => {
-        equal();
+        if (!eqtrack) {
+          equal();
+        }
       }}
     >
       <TbEqual />
@@ -241,18 +280,22 @@ export const Delete = (Styles: any, cur: string, setCur: any): JSX.Element => {
   );
 };
 export const Scie = (
-  Styles: any,
   scientific: boolean,
-  pushed_bg: any,
-  setScie: any
+  setScie: any,
+  Styles: any
 ): JSX.Element => {
+  let [pushed, setPushed] = useState("#00000000");
+  let handlePush = () => {
+    pushed === "#00000000" ? setPushed("#00000025") : setPushed("#00000000");
+  };
   return (
     <button
       key={"scie"}
       className={Styles.n_root}
-      style={{ background: pushed_bg(scientific) }}
+      style={{ background: pushed }}
       onClick={() => {
         setScie(!scientific);
+        handlePush();
       }}
     >
       <TbMath />
@@ -260,18 +303,22 @@ export const Scie = (
   );
 };
 export const History_btn = (
-  Styles: any,
+  history: boolean,
   setHistory: any,
-  pushed_bg: any,
-  history: boolean
+  Styles: any
 ): JSX.Element => {
+  let [pushed, setPushed] = useState("#00000000");
+  let handlePush = () => {
+    pushed === "#00000000" ? setPushed("#00000025") : setPushed("#00000000");
+  };
   return (
     <button
       key={"history"}
       className={Styles.history_icon}
-      style={{ background: pushed_bg(history) }}
+      style={{ background: pushed }}
       onClick={() => {
         setHistory(!history);
+        handlePush();
       }}
     >
       <BsClockHistory />
@@ -281,50 +328,46 @@ export const History_btn = (
 export const Light = (
   Styles: any,
   setMode: any,
-  mode: boolean,
-  pushed_bg: any
+  mode: boolean
 ): JSX.Element => {
+  const [pushed, setPushed] = useState("#00000000");
+  const handlePush = () => {
+    pushed === "#00000000" ? setPushed("#00000025") : setPushed("#00000000");
+  };
   return (
     <button
       key={"light"}
       className={Styles.mode}
-      style={{ background: pushed_bg(mode) }}
+      style={{ background: pushed }}
       onClick={() => {
         setMode(!mode);
+        handlePush();
       }}
     >
       <BsLightbulb />
     </button>
   );
 };
-export const SettingsIcon = (
-  Styles: any,
-  setSettings: any,
-  upDateSettings: any
-): JSX.Element => {
+export const SettingsIcon = (Styles: any, setSettings: any): JSX.Element => {
   return (
     <button
       key={"settings"}
       className={Styles.settings}
       onClick={() => {
-        setSettings(upDateSettings());
+        setSettings("flex");
       }}
     >
       <BsGear />
     </button>
   );
 };
-export const Info_btn = (
-  Styles: any,
-  setInfo: any,
-  updateInfo: any
-): JSX.Element => {
+export const Info_btn = (Styles: any, setInfo: any): JSX.Element => {
   return (
     <button
       key={"info"}
       className={Styles.about_me}
       onClick={() => {
-        setInfo(updateInfo());
+        setInfo("flex");
       }}
     >
       <BsInfoCircle />

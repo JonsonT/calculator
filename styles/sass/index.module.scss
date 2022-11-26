@@ -13,25 +13,38 @@
   border-radius: 10px;
   z-index: 1;
 }
-#__next {
-  width: 100%;
-  height: 100%;
+.main {
+  @include grid_template(auto, 2.1fr 5.6fr 1.9fr);
+  @include size(auto, 100%);
 }
+
 @media only screen and (max-width: 700px) {
+  .main {
+    @include grid_template(1fr 100px 100px, 1fr);
+    button {
+      font-size: map-get($map: $font_size, $key: "small");
+    }
+  }
   .wrap {
     @include size(450px, 550px);
   }
 }
 @media only screen and (max-width: 500px) {
-  .wrap {
-    @include size(310px, 466px);
-  }
   .body {
     min-width: 200px;
     position: fixed;
   }
+  .wrap {
+    @include size(310px, 466px);
+  }
+  .main {
+    @include grid_template(1fr 80px 80px, 1fr);
+    div {
+      font-size: map-get($map: $font_size, $key: "xxsmall");
+    }
+  }
 }
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 350px) {
   .wrap {
     @include size(260px, 450px);
   }
