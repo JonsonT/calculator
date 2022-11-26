@@ -2,30 +2,21 @@ import Styles from "../styles/sass/settings.module.scss";
 import { FiXSquare } from "react-icons/fi";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import React, { useState } from "react";
-const Settings = (setSettings: any, settingS: string): JSX.Element => {
-  const bgcoloros = {
-    bg1: "#65005ecc",
-    bg2: "#3c84cecc",
-    bg3: "#30eee2cc",
-    bg4: "#ff1919cc",
-    bg5: "#555",
-  };
-  const fonts = {
-    ft1: "italic",
-    ft2: "serif",
-    ft3: "monospace",
-    ft4: "cursive",
-    ft5: "Verdana",
-  };
-
-  const [bg, setBg] = useState<string>(bgcoloros.bg5);
-  const [ft, setFt] = useState<string>("sans-serif");
+const Settings = (
+  setSettings: any,
+  settingS: string,
+  bgcoloros: any,
+  fonts: any,
+  ft: string,
+  setBg: any,
+  setFt: any
+): JSX.Element => {
   const [choosen, setChoosen] = useState<string>("bg5");
   const [dark_light, setDarkLight] = useState<string>("light");
   return (
     <>
       <div className={Styles.settings_wrapper} style={{ display: settingS }}>
-        <div className={Styles.settings_block} style={{ background: bg }}>
+        <div className={Styles.settings_block}>
           <main>
             <button
               id={Styles.close}

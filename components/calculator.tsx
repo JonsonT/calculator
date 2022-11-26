@@ -139,14 +139,14 @@ export default function Calculator(setInfo: any, setSettings: any) {
             {DisNum_Oper(12, updateCalc, Styles)}
           </div>
           <div className={Styles.bot_col_numbers}>
-            <button className={Styles.empty2} id={Styles.empty}></button>
+            <div className={Styles.empty}></div>
             {DisNum_Oper(1, updateCalc, Styles)}
             {DisNum_Oper(2, updateCalc, Styles)}
             {DisNum_Oper(3, updateCalc, Styles)}
             {DisNum_Oper(11, updateCalc, Styles)}
           </div>
           <div className={Styles.last_col_numbers}>
-            <button className={Styles.empty}></button>
+            <div className={Styles.empty1}></div>
             {DisNum_Oper(16, updateCalc, Styles)}
             {DisNum_Oper(0, updateCalc, Styles)}
             {DisNum_Oper(15, updateCalc, Styles)}
@@ -163,7 +163,7 @@ export default function Calculator(setInfo: any, setSettings: any) {
               h_Log,
               createHistoryLog
             )}
-            <button className={Styles.space}></button>
+            <div className={Styles.empty2}></div>
           </div>
         </div>
       </div>
