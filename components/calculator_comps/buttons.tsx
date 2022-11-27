@@ -135,42 +135,6 @@ export const DisNum_Oper = (
     </button>,
     <button
       key={11}
-      className={Styles.minus}
-      onClick={() => {
-        updateCalc("-");
-      }}
-    >
-      <TbMinus />
-    </button>,
-    <button
-      key={12}
-      className={Styles.plus}
-      onClick={() => {
-        updateCalc("+");
-      }}
-    >
-      <TbPlus />
-    </button>,
-    <button
-      key={13}
-      className={Styles.b_slash}
-      onClick={() => {
-        updateCalc("/");
-      }}
-    >
-      <TbDivide />
-    </button>,
-    <button
-      key={14}
-      className={Styles.x}
-      onClick={() => {
-        updateCalc("*");
-      }}
-    >
-      <TbLetterX />
-    </button>,
-    <button
-      key={15}
       className={Styles.dot}
       onClick={() => {
         updateCalc(".");
@@ -179,7 +143,7 @@ export const DisNum_Oper = (
       <BsDot />
     </button>,
     <button
-      key={16}
+      key={12}
       className={Styles.p_m}
       onClick={() => {
         updateCalc("pm");
@@ -189,6 +153,51 @@ export const DisNum_Oper = (
     </button>,
   ];
   return numbers[key];
+};
+export const Operators = (
+  key: number,
+  operator: any,
+  Styles: any
+): JSX.Element => {
+  let operators = [
+    <button
+      key={0}
+      className={Styles.minus}
+      onClick={() => {
+        operator("-");
+      }}
+    >
+      <TbMinus />
+    </button>,
+    <button
+      key={1}
+      className={Styles.plus}
+      onClick={() => {
+        operator("+");
+      }}
+    >
+      <TbPlus />
+    </button>,
+    <button
+      key={2}
+      className={Styles.b_slash}
+      onClick={() => {
+        operator("/");
+      }}
+    >
+      <TbDivide />
+    </button>,
+    <button
+      key={3}
+      className={Styles.x}
+      onClick={() => {
+        operator("*");
+      }}
+    >
+      <TbLetterX />
+    </button>,
+  ];
+  return operators[key];
 };
 export const Equal = (
   Styles: any,
@@ -291,7 +300,7 @@ export const Scie = (
     <button
       key={"scie"}
       className={Styles.n_root}
-      style={{ background: pushed }}
+      style={{ backgroundColor: pushed }}
       onClick={() => {
         setScie(!scientific);
         handlePush();

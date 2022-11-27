@@ -11,8 +11,6 @@ const Settings = (
   setBg: any,
   setFt: any
 ): JSX.Element => {
-  const [choosen, setChoosen] = useState<string>("bg5");
-  const [dark_light, setDarkLight] = useState<string>("light");
   return (
     <>
       <div className={Styles.settings_wrapper} style={{ display: settingS }}>

@@ -1,17 +1,19 @@
 .gradient {
   width: 100%;
   height: 100%;
-  animation: gradient 25s ease infinite;
-  position: absolute;
+  animation: gradient 25s ease infinite !important;
+  position: absolute !important;
+  background-attachment: fixed !important;
+  background-size: 400% 400% !important;
 }
 .wave {
+  z-index: 0;
   width: 200%;
   height: 12em;
   background: rgb(255 255 255 / 15%);
   border-radius: 1000% 1000% 0 0;
   position: fixed;
-  // width: 200%;
-  // height: 12em;
+  height: 12em;
   animation: wave 10s -3s linear infinite;
   transform: translate3d(0, 0, 0);
   opacity: 0.8;

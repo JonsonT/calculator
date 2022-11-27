@@ -1,6 +1,6 @@
 import Styles from "../../styles/sass/scientific.module.scss";
 import { TbMath } from "react-icons/tb";
-const Scientific = (updateCalc: any, scientific: boolean): JSX.Element => {
+const Scientific = (scientificOpers: any, scientific: boolean): JSX.Element => {
   return scientific ? (
     <div className={Styles.main_right}>
       <div className={Styles.header}>
@@ -12,7 +12,7 @@ const Scientific = (updateCalc: any, scientific: boolean): JSX.Element => {
         <button
           className={Styles.pow2}
           onClick={() => {
-            updateCalc("^");
+            scientificOpers("pow");
           }}
         >
           <svg
@@ -46,7 +46,7 @@ const Scientific = (updateCalc: any, scientific: boolean): JSX.Element => {
         <button
           className={Styles.sqr2}
           onClick={() => {
-            updateCalc("sqr");
+            scientificOpers("sqrt");
           }}
         >
           <svg
@@ -85,9 +85,9 @@ l0 -51 56 0 c79 0 118 30 235 175 53 66 98 119 99 118 2 -2 15 -46 30 -98 35
           </svg>
         </button>
         <button
-          className={Styles.powX}
+          className={Styles.powY}
           onClick={() => {
-            updateCalc("0");
+            scientificOpers("powY");
           }}
         >
           <svg
@@ -121,7 +121,7 @@ l0 -51 56 0 c79 0 118 30 235 175 53 66 98 119 99 118 2 -2 15 -46 30 -98 35
         <button
           className={Styles.sqrX}
           onClick={() => {
-            updateCalc("0");
+            scientificOpers("0");
           }}
         >
           <svg
@@ -164,12 +164,19 @@ l-45 -24 -24 22 c-31 29 -44 28 -60 -5 -24 -47 -30 -85 -15 -94 29 -19 103 -9
           mod
         </button>
         <button className={Styles.pi} onClick={() => {}}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M7 20v-16"></path>
             <path d="M17 4v16"></path>
             <path d="M20 4h-16"></path>
-          </svg>
+          </svg>{" "}
         </button>
         <button className={Styles.b2} onClick={() => {}}>
           Base2

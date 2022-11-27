@@ -8,8 +8,8 @@ const Layout = (bg: string) => {
         className={Styles.gradient}
         style={{
           background: bg,
-          backgroundAttachment: "fixed !important",
-          backgroundSize: "400% 400% !important",
+          backgroundAttachment: "fixed ",
+          backgroundSize: "400% 400% ",
         }}
       ></div>
       <div>

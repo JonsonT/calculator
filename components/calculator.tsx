@@ -12,6 +12,7 @@ import {
   History_btn,
   Light,
   SettingsIcon,
+  Operators,
 } from "./calculator_comps/buttons";
 export default function Calculator(setInfo: any, setSettings: any) {
   const [mode, setMode] = useState<boolean>(false);
@@ -21,27 +22,107 @@ export default function Calculator(setInfo: any, setSettings: any) {
   const [eqtrack, setEqtrack] = useState<boolean>(false);
   const [h_Log, setHlog] = useState<any>([]);
   const [history, setHistory] = useState<boolean>(true);
-  const createHistoryLog = (): JSX.Element => {
-    return React.createElement(
-      "div",
-      { className: Styles.history_log },
-      result + " " + cur + " = " + eval(result + " " + cur)
+  const createHistoryLog = (expression: string | undefined): JSX.Element => {
+    return (
+      <div className={Styles.history_log} key={Math.random()}>
+        {expression !== undefined
+          ? expression
+          : result + " " + cur + " = " + eval(result + " " + cur)}
+      </div>
     );
   };
   const [cur, setCur] = useState<string>("0");
   const [result, setResult] = useState<string>("");
-  const updateCalc = (value: string): void => {
-    if (["^2", "sqr2", "powx", "sqrx", "pi"].indexOf(value) !== -1) {
-      if (cur !== "0") {
-        if (value === "^2") {
-          let x = parseInt(cur);
+  const operator = (op: string) => {
+    if (scieState.length > 0) {
+      if (scieState === "pow") {
+        setResult(result + " " + op);
+        setCur("0");
+      } else if (scieState === "sqrt") {
+        setResult(cur + " " + op);
+        setCur("0");
+      }
+      setScieState("");
+      return;
+    }
+    if (eqtrack) {
+      setResult(cur + op);
+      setCur("0");
+      setEqtrack(false);
+      return;
+    }
+    if (scientific) {
+      if (result === "") {
+        setResult(cur + " " + op);
+      } else {
+        if (
+          ["/", "-", "+", "*"].indexOf(result.slice(-1)) === -1 ||
+          cur !== "0"
+        ) {
+          setResult(result + " " + cur + " " + op);
+          setCur(eval(result + " " + cur));
+          return;
+        } else {
+          if (cur === "0") {
+            setResult(result.slice(0, -1) + op);
+            return;
+          } else {
+            setResult(result + " " + cur + " " + op);
+          }
+        }
+      }
+    } else {
+      if (result === "") {
+        setResult(cur + " " + op);
+      } else {
+        if (["/", "-", "+", "*"].indexOf(result.slice(-1)) !== -1) {
+          setResult(result + " " + cur + " " + op);
+        } else {
+          setResult(eval(result + " " + cur) + " " + op);
         }
       }
     }
-    if (value === "pm") {
-      if (eqtrack) {
+    setCur("0");
+  };
+  const updateCalc = (value: string): void => {
+    if (scieState.length > 0) {
+      if (value === ".") {
+        createHistoryLog(cur + " " + "=" + " " + result);
+        setCur("0.");
+        setResult("");
+      } else if (value === "pm") {
+        return;
+      } else {
+        createHistoryLog(cur + " " + "=" + " " + result);
+        setCur(value);
+        setResult("");
+      }
+      setScieState("");
+      return;
+    }
+    if (["-", "/", "+", "*"].indexOf(result.slice(-1))) {
+      if (value === ".") {
+        setCur("0.");
+      } else {
+        setCur(value);
+      }
+    }
+    if (eqtrack) {
+      setEqtrack(false);
+      if (value === ".") {
+        setCur("0.");
+        setResult("");
         return;
       }
+      if (value === "pm") {
+        setCur("0");
+        setResult("");
+        return;
+      }
+      setCur(value);
+      setResult("");
+    }
+    if (value === "pm") {
       if (cur !== "0") {
         if (cur[0] === "-") {
           setCur(cur.substring(1));
@@ -52,43 +133,12 @@ export default function Calculator(setInfo: any, setSettings: any) {
       return;
     }
     if (value === ".") {
-      if (eqtrack) {
-        setCur("0.");
-        setResult("");
-        setEqtrack(false);
-        return;
-      } else if (cur.indexOf(".") === -1 && !eqtrack) {
+      if (cur.indexOf(".") === -1) {
         setCur(cur + value);
         return;
       }
-    } else if (["+", "-", "*", "/"].indexOf(value) > -1) {
-      if (scientific) {
-        if (eqtrack) {
-          setResult(cur + value);
-          setCur("0");
-          setEqtrack(false);
-          return;
-        }
-        if (result === "") {
-          setResult(cur + " " + value);
-        } else {
-          setResult(result + " " + cur + " " + value);
-        }
-      } else {
-        if (result === "") {
-          setResult(cur + " " + value);
-        } else {
-          setResult(eval(result + " " + cur) + " " + value);
-        }
-      }
-      setCur("0");
     } else {
-      if (eqtrack) {
-        setCur(value);
-        setResult("");
-        setEqtrack(false);
-        return;
-      } else if (cur === "0") {
+      if (cur === "0") {
         setCur(value);
       } else {
         if (cur.length < 20) {
@@ -98,7 +148,42 @@ export default function Calculator(setInfo: any, setSettings: any) {
     }
   };
   const [scientific, setScie] = useState<boolean>(true);
-
+  const [scieState, setScieState] = useState<string>("");
+  const scientificOpers = (value: string): void => {
+    if (value === "sqrt") {
+      if (!eqtrack) {
+        setCur(Math.sqrt(Number(cur)).toString());
+        setResult("sqrt(" + cur + ")");
+        setScieState("sqrt");
+        return;
+      }
+    }
+    if (value === "pow") {
+      if (!eqtrack) {
+        setCur(cur + "^2");
+        setResult(Math.pow(Number(cur), 2).toString());
+        setScieState("pow");
+        return;
+      }
+    }
+    if (value === "powY") {
+      if (!eqtrack) {
+        if (cur !== "0") {
+          setCur(cur + "^");
+          setScieState("powY");
+          return;
+        }
+      }
+    }
+    if (value === "sqrty") {
+      if (eqtrack) {
+        setCur(Math.pow(Number(cur), 1 / 3).toString());
+        setResult("cbrt(" + cur + ")");
+        setEqtrack(false);
+        return;
+      }
+    }
+  };
   return (
     <>
       {" "}
@@ -118,10 +203,9 @@ export default function Calculator(setInfo: any, setSettings: any) {
             <div className={Styles.display_cur}>{cur}</div>
           </div>
           {Delete(Styles, cur, setCur)}
-
           {History_btn(history, setHistory, Styles)}
           {Clear(Styles, setCur, setResult, setHlog)}
-          {DisNum_Oper(13, updateCalc, Styles)}
+          {Operators(2, operator, Styles)}
         </div>
         <div className={Styles.numbers_rows}>
           <div className={Styles.top_col_numbers}>
@@ -129,27 +213,27 @@ export default function Calculator(setInfo: any, setSettings: any) {
             {DisNum_Oper(7, updateCalc, Styles)}
             {DisNum_Oper(8, updateCalc, Styles)}
             {DisNum_Oper(9, updateCalc, Styles)}
-            {DisNum_Oper(14, updateCalc, Styles)}
+            {Operators(3, operator, Styles)}
           </div>
           <div className={Styles.mid_col_numbers}>
             {DisNum_Oper(10, updateCalc, Styles)}
             {DisNum_Oper(4, updateCalc, Styles)}
             {DisNum_Oper(5, updateCalc, Styles)}
             {DisNum_Oper(6, updateCalc, Styles)}
-            {DisNum_Oper(12, updateCalc, Styles)}
+            {Operators(1, operator, Styles)}
           </div>
           <div className={Styles.bot_col_numbers}>
             <div className={Styles.empty}></div>
             {DisNum_Oper(1, updateCalc, Styles)}
             {DisNum_Oper(2, updateCalc, Styles)}
             {DisNum_Oper(3, updateCalc, Styles)}
-            {DisNum_Oper(11, updateCalc, Styles)}
+            {Operators(0, operator, Styles)}
           </div>
           <div className={Styles.last_col_numbers}>
             <div className={Styles.empty1}></div>
-            {DisNum_Oper(16, updateCalc, Styles)}
+            {DisNum_Oper(12, updateCalc, Styles)}
             {DisNum_Oper(0, updateCalc, Styles)}
-            {DisNum_Oper(15, updateCalc, Styles)}
+            {DisNum_Oper(11, updateCalc, Styles)}
             {Equal(
               Styles,
               eqtrack,
@@ -167,7 +251,7 @@ export default function Calculator(setInfo: any, setSettings: any) {
           </div>
         </div>
       </div>
-      {Scientific(setScie, scientific)}
+      {Scientific(scientificOpers, scientific)}
     </>
   );
 }

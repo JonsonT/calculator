@@ -4,11 +4,10 @@
   padding: 20px;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.805);
-  width: 70%;
-  height: 70%;
-  position: relative;
+  width: 80%;
+  height: 80%;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
-
+  max-width: 700px;
   main {
     @include flex_center(column, space-around, center);
     gap: 5px;
@@ -59,6 +58,15 @@
     }
   }
 }
+.settings_wrapper {
+  @include flex_center(column, center, center);
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  left: 0;
+  top: 0;
+  @include flex_center(column, center, center);
+}
 
 .background_choose_block {
   flex-direction: row !important;
@@ -95,20 +103,25 @@
 }
 
 .bg1 {
-  background: rgba(101, 0, 94, 0.799);
   background: #65005ecc;
 }
 .bg2 {
-  background: rgba(60, 132, 206, 0.799);
   background: #3c84cecc;
 }
 .bg3 {
-  background: rgba(48, 238, 226, 0.799);
   background: #30eee2cc;
 }
 .bg4 {
-  background: rgba(255, 25, 25, 0.799);
-  background: #ff1919cc;
+  background: linear-gradient(
+    315deg,
+    #1a2a6c 3%,
+    #b21f1f 38%,
+    #fdbb2d 68%,
+    #b21f1f 98%
+  );
+  animation: gradient 5s ease infinite;
+  background-size: 400% 400%;
+  background-attachment: fixed;
 }
 .bg5 {
   background: linear-gradient(
@@ -118,7 +131,7 @@
     rgba(48, 238, 226, 1) 68%,
     rgba(255, 25, 25, 1) 98%
   );
-  animation: gradient 10s ease infinite;
+  animation: gradient 5s ease infinite;
   background-size: 400% 400%;
   background-attachment: fixed;
   @keyframes gradient {
@@ -158,34 +171,49 @@
 .ft5 {
   font-family: "Verdana";
 }
-.save {
-  border-radius: 20px;
-  height: 35px;
-  width: 100px;
-  background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.39);
-  transition: 0.5s ease;
-  &:hover {
-    background: rgba(0, 0, 0, 0.39);
-    color: white;
-    cursor: pointer;
-    transform: scale(1.1);
+@media only screen and (max-width: 700px) {
+  .settings_block {
+    width: 90%;
+    div {
+      button {
+        width: 60px !important;
+        height: 60px !important;
+      }
+    }
+  }
+  .settings_wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 }
 @media only screen and (max-width: 350px) {
-  .about_wrapper {
-    @include flex_center(column, center, center);
-    min-width: 250px;
-    overflow-x: scroll;
+  .settings_block {
+    padding: 2px;
+    width: 100%;
+    min-width: 240px;
+    overflow-x: auto;
+    div {
+      button {
+        width: 50px !important;
+        height: 50px !important;
+      }
+    }
+  }
+  .settings_wrapper {
+    min-width: 240px;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.399);
   }
 }
-
-.settings_wrapper {
-  @include flex_center(row, center, center);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.399);
+@media only screen and (max-height: 350px) {
+  .settings_wrapper {
+    height: 350px;
+    min-height: 350px;
+  }
+  .settings_block {
+    position: absolute;
+    top: 0;
+    min-height: 350px;
+  }
 }

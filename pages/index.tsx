@@ -9,8 +9,8 @@ export default function Home() {
     bg1: "#65005ecc",
     bg2: "#3c84cecc",
     bg3: "#30eee2cc",
-    bg5: "linear-gradient(315deg,rgba(10,10, 10, 1) 3%, rgba(40, 40, 40, 1) 38%, rgba(50, 50, 50,1) 68%, rgba(70, 70, 70, 1) 98%)",
-    bg4: "linear-gradient(315deg,rgba(101, 0, 94, 1) 3%,rgba(60, 132, 206, 1) 38%,rgba(48, 238, 226, 1) 68%,rgba(255, 25, 25, 1) 98%)",
+    bg4: "linear-gradient(315deg,#1a2a6c 3%, #b21f1f 38%, #fdbb2d 68%, #b21f1f 98%)",
+    bg5: "linear-gradient(315deg,rgba(101, 0, 94, 1) 3%,rgba(60, 132, 206, 1) 38%,rgba(48, 238, 226, 1) 68%,rgba(255, 25, 25, 1) 98%)",
   };
   const fonts = {
     ft1: "italic",
