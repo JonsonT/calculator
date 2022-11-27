@@ -27,7 +27,6 @@ import {
   BsDot,
 } from "react-icons/bs";
 import { useState } from "react";
-import Scientific from "./scientific";
 export const DisNum_Oper = (
   key: number,
   updateCalc: any,

@@ -1,4 +1,4 @@
-import Styles from "../styles/sass/scientific.module.scss";
+import Styles from "../../styles/sass/scientific.module.scss";
 import { TbMath } from "react-icons/tb";
 const Scientific = (updateCalc: any, scientific: boolean): JSX.Element => {
   return scientific ? (

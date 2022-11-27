@@ -6,6 +6,7 @@
   font-family: "Roboto", sans-serif;
   margin: auto;
   position: relative;
+  overflow-y: auto;
 }
 .wrap {
   @include size(660px, 450px);
@@ -22,16 +23,15 @@
   .main {
     @include grid_template(1fr 100px 100px, 1fr);
     button {
-      font-size: map-get($map: $font_size, $key: "small");
+      font-size: map-get($map: $font_size, $key: "xsmall");
     }
   }
   .wrap {
-    @include size(450px, 550px);
+    @include size(400px, 550px);
   }
 }
 @media only screen and (max-width: 500px) {
   .body {
-    min-width: 200px;
     position: fixed;
   }
   .wrap {
@@ -46,11 +46,38 @@
 }
 @media only screen and (max-width: 350px) {
   .wrap {
-    @include size(260px, 450px);
+    @include size(100%, 450px);
+  }
+  .main {
+    @include grid_template(1fr 80px 80px, 1fr);
+    div {
+      font-size: 14px;
+    }
   }
 }
-@media only screen and (max-height: 550px) {
+@media only screen and (max-width: 240px) {
+  .wrap {
+    @include size(auto, 450px);
+  }
   .main {
-    align-content: flex-start;
+    overflow-x: auto;
+    width: 100vw;
+    min-width: 160px;
+    div {
+      font-size: 10px;
+    }
+  }
+}
+@media only screen and (max-height: 450px) {
+  .wrap {
+    width: auto;
+    height: auto;
+  }
+  .main {
+    position: absolute;
+    width: 90%;
+    top: 0;
+    left: 5%;
+    z-index: -1;
   }
 }

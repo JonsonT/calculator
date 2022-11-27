@@ -1,17 +1,19 @@
 @use "./funcs.module.scss" as *;
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@1,200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@1,200;1,400&display=swap");
 .info_wrapper {
   @include flex_center(column, center, center);
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.399);
+  font-family: "Source Sans Pro", sans-serif;
 }
 .info_block {
-  @include flex_center(column, space-between, center);
+  @include flex_center(column, center, center);
   box-shadow: 0 0 35px 20px rgba(0, 0, 0, 0.269);
-
   border-radius: 15px;
   background-color: rgba(232, 230, 230, 0.9);
   width: 80%;
@@ -20,21 +22,27 @@
   max-height: 700px;
   position: relative;
   padding: 30px;
-}
-
-.howtouse {
-  @include grid_template(auto 180px 180px, 1fr 1fr 1fr 1fr 1fr);
-  font-size: 16px;
-  gap: 10px;
+  gap: 20px;
   h2 {
-    @include grid(1, 2, 1, 6);
+    position: absolute;
+    top: 20px;
     text-align: center;
   }
+}
+.howtouse {
+  @include grid_template(auto auto, 1fr 1fr 1fr 1fr);
+  font-size: 16px;
+  gap: 10px;
+
   section {
     @include flex_center(column, flex-start, flex-start);
     border: $prime_border;
     border-radius: 10px;
     padding: 8px;
+
+    p {
+      font-family: "Source Sans Pro", sans-serif;
+    }
     svg {
       font-size: 35px;
       align-self: center;
@@ -46,29 +54,17 @@
     padding-top: 3px;
     padding-bottom: 5px;
   }
-  .history_info_mode_box {
-    @include grid(3, 4, 4, 6);
-  }
-  .scientific_info_mode_box {
-    @include grid(2, 3, 4, 6);
-    justify-content: flex-start;
-    h5 {
-      align-self: center;
-    }
-  }
 }
-.usedlang {
-  width: 100%;
-}
-.devifno {
+.devinfo {
+  position: absolute;
+  padding: 0 20px;
+  bottom: 20px;
+  @include flex_center(column, space-between, center);
   width: 100%;
   gap: 3px;
-  @include flex_center(column, center, center);
-  section {
-    font-size: 15px;
-  }
   div {
     width: 100%;
+    font-size: 15px;
     @include flex_center(row, space-between, flex-start);
   }
 }
@@ -88,6 +84,16 @@
     }
   }
 }
+.usedlang {
+  height: auto;
+  section {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  width: 100%;
+}
 @media only screen and (max-width: 700px) {
   .howtouse {
     font-size: 13px;
@@ -103,7 +109,7 @@
       font-size: 14px;
     }
   }
-  .devifno {
+  .devinfo {
     h3 {
       font-size: 16px;
     }
@@ -114,36 +120,31 @@
 }
 @media only screen and (max-width: 500px) {
   .info_block {
-    @include flex_center(column, space-between, center);
+    @include flex_center(column, center, center);
     width: 96%;
     height: 90%;
     position: relative;
     padding: 12px;
   }
-
   .howtouse {
-    @include grid_template(auto 120px 100px, auto);
+    @include grid_template(70px 70px 70px 70px, 1fr 1fr);
     font-size: 12px;
     section {
-      padding: 4px;
+      padding: 2px;
       svg {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
     span {
-      font-size: 12px;
+      font-size: 11px;
       padding-top: 1px;
       padding-bottom: 2px;
     }
-    .history_info_mode_box {
-      @include grid(3, 4, 4, 6);
-    }
-    .scientific_info_mode_box {
-      @include grid(2, 3, 4, 6);
-    }
   }
-  .devifno {
-    @include flex_center(column, center, center);
+  .devinfo {
+    h3 {
+      font-size: 14px;
+    }
     section {
       font-size: 12px;
     }
@@ -155,22 +156,15 @@
 }
 @media only screen and (max-width: 350px) {
   .info_block {
-    @include flex_center(column, space-between, center);
     width: 100%;
-    height: 95%;
-    position: relative;
-    padding: 2px;
+    height: 100%;
+    padding: 8px;
   }
-
   .howtouse {
-    @include grid_template(
-      auto 90px 90px 90px 90px !important,
-      49% 49% !important
-    );
     section {
       padding: 2px;
       svg {
-        font-size: 16px !important;
+        font-size: 16px;
       }
     }
     span {
@@ -178,38 +172,13 @@
       padding-top: 1px;
       padding-bottom: 2px;
     }
-    .settings_box {
-      @include grid(2, 3, 1, 2);
-    }
-    .light_box {
-      @include grid(2, 3, 2, 3);
-    }
-    .clear_box {
-      @include grid(5, 6, 2, 3);
-    }
-    .external_box {
-      @include grid(3, 4, 2, 3);
-    }
-    .info_box {
-      @include grid(3, 4, 1, 2);
-    }
-    .history_info_mode_box {
-      @include grid(4, 5, 1, 2);
-    }
-    .scientific_info_mode_box {
-      @include grid(4, 5, 2, 3);
-    }
-    .del_box {
-      @include grid(5, 6, 1, 2);
-    }
   }
-  .devifno {
-    @include flex_center(column, center, center);
+  .devinfo {
     section {
-      font-size: 10px !important;
+      font-size: 10px;
     }
     h3 {
-      font-size: 14px !important;
+      font-size: 12px;
     }
   }
   .about_exit_btn {
@@ -217,59 +186,129 @@
     padding: 5px;
   }
 }
-@media only screen and (max-height: 750px) {
+@media only screen and (max-width: 250px) {
+  .info_block {
+    padding: 4px;
+  }
   .howtouse {
-    grid-template-rows: auto 150px 140px;
-    font-size: 12px;
     section {
+      padding: 2px;
       svg {
-        font-size: 20px;
-      }
-      span {
-        font-size: 11px;
+        font-size: 12px;
       }
     }
+    span {
+      font-size: 8px;
+      padding-top: 1px;
+      padding-bottom: 0;
+    }
+    p {
+      font-size: 10px;
+    }
   }
-  .usedlang {
-    width: 100%;
-    font-weight: 600;
-    font-size: 12px;
-  }
-  .devifno {
+  .devinfo {
     h3 {
-      font-size: 16px;
+      font-size: 10px;
     }
     section {
-      font-size: 12px;
+      font-size: 8px;
     }
   }
 }
-@media only screen and (max-height: 570px) {
+@media only screen and (max-height: 760px) {
   .info_block {
-    min-height: 530px !important;
+    height: 90%;
+    h2 {
+      font-size: 20px;
+    }
   }
   .howtouse {
-    grid-template-rows: auto 130px 120px;
-    grid-template-columns: auto;
-    font-size: 12px;
-
     section {
       svg {
         font-size: 18px;
       }
-      span {
-        font-size: 12px;
-        padding-bottom: 1px;
+    }
+  }
+  .devinfo {
+    h3 {
+      font-size: 14px;
+    }
+    div {
+      font-size: 11px;
+    }
+  }
+  .usedlang {
+    section {
+      font-size: 16px;
+      gap: 10px;
+    }
+  }
+}
+@media only screen and (max-height: 560px) {
+  .info_block {
+    height: 90%;
+    gap: 10px;
+    overflow-y: auto;
+    h2 {
+      font-size: 18px;
+    }
+  }
+  .howtouse {
+    font-size: 12px;
+    section {
+      svg {
+        font-size: 16px;
       }
     }
   }
   .usedlang {
-    width: 100%;
+    section {
+      gap: 10px;
+      font-size: 12px;
+    }
+  }
+}
+@media only screen and (max-height: 560px) {
+  .info_block {
+    height: 98%;
+    h2 {
+      font-size: 18px;
+    }
+  }
+  .howtouse {
     font-size: 12px;
-    br {
-      &:nth-child(odd) {
-        display: none;
+    section {
+      svg {
+        font-size: 16px;
       }
+    }
+  }
+}
+@media only screen and (max-height: 480px) {
+  .info_block {
+    position: absolute;
+    top: 0;
+    min-height: 430px;
+    h2 {
+      font-size: 14px;
+    }
+  }
+  .howtouse {
+    @include grid_template(60px 60px 60px 60px, 1fr 1fr);
+    font-size: 10px;
+    section {
+      svg {
+        font-size: 12px;
+      }
+    }
+    span {
+      font-size: 10px;
+    }
+  }
+  .usedlang {
+    section {
+      gap: 4px;
+      font-size: 10px;
     }
   }
 }

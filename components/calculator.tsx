@@ -1,7 +1,7 @@
 import Styles from "../styles/sass/calc.module.scss";
-import Scientific from "../components/scientific";
+import Scientific from "./calculator_comps/scientific";
 import React, { useState } from "react";
-import History from "../components/history";
+import History from "./calculator_comps/history";
 import {
   DisNum_Oper,
   Info_btn,
@@ -12,7 +12,7 @@ import {
   History_btn,
   Light,
   SettingsIcon,
-} from "../components/buttons";
+} from "./calculator_comps/buttons";
 export default function Calculator(setInfo: any, setSettings: any) {
   const [mode, setMode] = useState<boolean>(false);
   const display_bg = (mode: boolean) => {
